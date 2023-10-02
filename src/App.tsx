@@ -1,5 +1,4 @@
-import { Dispatch, useCallback, useEffect, useReducer } from 'react';
-import { useCheckAuth } from 'features/Authentication/model';
+import { Dispatch, useCallback, useReducer } from 'react';
 import { ActionType } from 'lib/FSM';
 import { routing } from 'pages';
 import {
@@ -10,19 +9,10 @@ import {
     reducer,
     initState,
 } from 'store';
-import { Stages } from 'store/enums';
 
 export const App = () => {
     const [state, dispatch] = useReducer(reducer, initState);
     const getState = useCallback(() => state, [state]);
-
-    const checkAuth = useCheckAuth(dispatch, state.data.authService);
-
-    useEffect(() => {
-        if (state.stage === Stages.CHECKING_AUTH) {
-            checkAuth();
-        }
-    }, [state.stage, checkAuth]);
 
     console.log('Render App', state);
     return (

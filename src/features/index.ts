@@ -1,4 +1,4 @@
-export { Authentication } from './Authentication';
+export { AuthContainer } from './Authentication';
 
 export type { AuthService } from './Authentication';
 

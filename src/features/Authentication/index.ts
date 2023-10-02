@@ -1,3 +1,3 @@
-export { Authentication } from './ui';
+export { AuthContainer } from './ui';
 
 export type { AuthService } from './api';

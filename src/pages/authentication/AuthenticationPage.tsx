@@ -1,5 +1,5 @@
-import { Authentication } from 'features';
+import { AuthContainer } from 'features';
 
 export const AuthenticationPage = () => {
-    return <Authentication />;
+    return <AuthContainer />;
 };
