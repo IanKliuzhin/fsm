@@ -9,7 +9,7 @@ import {
     trCheckingAuthToNotAuthenticated,
     trNotAuthToAuthenticating,
     trAuthenticatingToNotAuthenticated,
-    initAuthState,
+    initAuthStore,
 } from '../features/Authentication/model';
 import {
     Product,
@@ -228,10 +228,13 @@ const transitions = [
     trPaymentToPickingProducts,
 ];
 
-const fsm = new FSM<State, Transition>(transitions, initAuthState);
+export const initState = {
+    stage: Stages.CHECKING_AUTH,
+    data: initAuthStore,
+} satisfies CheckingAuthState;
+
+const fsm = new FSM<State, Transition>(transitions, initState);
 
 export type DispatchType = Dispatch<ActionType<State, State, Transition>>;
 
 export const { ActionContext, GetStateContext, reducer } = fsm;
-
-export const initState = initAuthState;

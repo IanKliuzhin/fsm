@@ -11,4 +11,4 @@ export {
     trAuthenticatingToNotAuthenticated,
 } from './transitions';
 
-export { initAuthState } from './authStore';
+export { initAuthStore } from './authStore';
