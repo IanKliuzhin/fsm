@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 import { State } from 'store';
 import { Stages } from 'store/enums';
-import { AuthenticationPage } from './authentication';
-import { ProductListPage } from './productList';
+import { AuthenticationPage } from './AuthenticationPage';
+import { ProductListPage } from './ProductListPage';
 
 export const routing = (state: State): ReactNode => {
     switch (state.stage) {
