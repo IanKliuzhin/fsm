@@ -7,6 +7,7 @@ export type ProductListStoreType = {
     products: ProductType[];
     productsService: ProductsService;
     productsPage: number;
+    productsInCartAmount: number;
 };
 
 export interface LoadingProductsState extends ProtoState {

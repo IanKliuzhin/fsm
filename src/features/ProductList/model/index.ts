@@ -4,6 +4,7 @@ export {
     trLoadingProductsToPickingProducts,
     trPickingProductsToLoadingProducts,
     trPickingProductsToProductInfo,
+    trPickingProductsToPickingProducts,
 } from './transitions';
 
 export type {

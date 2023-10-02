@@ -23,6 +23,7 @@ import {
     trLoadingProductsToPickingProducts,
     trPickingProductsToLoadingProducts,
     trPickingProductsToProductInfo,
+    trPickingProductsToPickingProducts,
 } from 'features/ProductList/model';
 import { ActionType, FSM, ProtoState, ProtoTransition } from 'lib/FSM';
 import { Stages, TransitionTypes } from './enums';
@@ -99,6 +100,7 @@ export type Transition =
     | typeof trLoadingProductsToPickingProducts
     | typeof trPickingProductsToLoadingProducts
     | typeof trPickingProductsToProductInfo
+    | typeof trPickingProductsToPickingProducts
     | typeof trProductInfoToPickingProducts
     | typeof trPickingProductsToCart
     | typeof trPickingProductsToNotAuthenticated
@@ -114,6 +116,7 @@ const transitions = [
     trLoadingProductsToPickingProducts,
     trPickingProductsToLoadingProducts,
     trPickingProductsToProductInfo,
+    trPickingProductsToPickingProducts,
     trProductInfoToPickingProducts,
     trPickingProductsToCart,
     trPickingProductsToNotAuthenticated,

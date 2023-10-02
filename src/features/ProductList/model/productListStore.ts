@@ -6,4 +6,5 @@ export const initProductListStore = {
     productsService,
     products: [],
     productsPage: 0,
+    productsInCartAmount: 0,
 } satisfies ProductListStoreType;

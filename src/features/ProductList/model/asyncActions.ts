@@ -8,7 +8,9 @@ export const useFetchProducts =
         productsService.fetchProducts(productsPage).then((products) =>
             dispatch({
                 type: ProductListTransitionTypes.LOADING_PRODUCTS__PICKING_PRODUCTS,
-                payload: { products },
+                payload: {
+                    products: products.map((p) => ({ ...p, inCartAmount: 0 })),
+                },
             }),
         );
     };
