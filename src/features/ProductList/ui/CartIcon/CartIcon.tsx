@@ -1,3 +1,9 @@
-export const CartIcon = ({ amount }: { amount: number }) => {
-    return <div>Items in cart: {amount}</div>;
+export const CartIcon = ({
+    amount,
+    open,
+}: {
+    amount: number;
+    open: () => void;
+}) => {
+    return <div onClick={open}>Items in cart: {amount}</div>;
 };

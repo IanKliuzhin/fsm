@@ -24,7 +24,7 @@ export const ProductList = () => {
         }
     }, [stage, fetchProducts, productsPage]);
 
-    const onClickLoadMore = () => {
+    const onLoadMoreClick = () => {
         dispatch({
             type: TransitionTypes.PICKING_PRODUCTS__LOADING_PRODUCTS,
             payload: { productsPage: productsPage + 1 },
@@ -34,16 +34,23 @@ export const ProductList = () => {
     const isAllLoaded =
         (productsPage + 1) * ProductsService.LIMIT < productsService.total;
 
+    const openCart = () => {
+        dispatch({
+            type: TransitionTypes.PICKING_PRODUCTS__CART,
+            payload: {},
+        });
+    };
+
     return (
         <div>
-            <CartIcon amount={productsInCartAmount} />
+            <CartIcon amount={productsInCartAmount} open={openCart} />
             <br />
             Product list:
             {products.map((product) => (
                 <ProductItem key={product.id} product={product} />
             ))}
             {stage === Stages.PICKING_PRODUCTS && isAllLoaded && (
-                <button type="button" onClick={onClickLoadMore}>
+                <button type="button" onClick={onLoadMoreClick}>
                     Load 10 more
                 </button>
             )}

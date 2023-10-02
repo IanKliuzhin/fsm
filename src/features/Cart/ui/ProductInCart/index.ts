@@ -1,0 +1,1 @@
+export { ProductInCart } from './ProductInCart';

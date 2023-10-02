@@ -9,8 +9,7 @@ export const ProductInfo = () => {
     const {
         data: { productForInfo },
     } = state as ProductInfoState;
-    const { id, title, description, price, brand, category, images } =
-        productForInfo;
+    const { id, title, description, price, brand, images } = productForInfo;
 
     const onClickBack = () => {
         dispatch({

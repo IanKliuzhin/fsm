@@ -1,6 +1,6 @@
-import { PickingProductsState } from 'features/ProductList/model';
 import { ProductListStages } from 'features/ProductList/model/enums';
 import { ProtoTransition } from 'lib/FSM';
+import { ProductListState } from 'store';
 import { ProductInfoStages, ProductInfoTransitionTypes } from './enums';
 import { ProductInfoState } from './types';
 
@@ -11,4 +11,4 @@ export const trProductInfoToPickingProducts = {
     collectData: (state) => ({
         ...state.data,
     }),
-} satisfies ProtoTransition<ProductInfoState, PickingProductsState>;
+} satisfies ProtoTransition<ProductInfoState, ProductListState>;

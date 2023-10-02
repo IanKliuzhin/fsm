@@ -11,12 +11,13 @@ import {
     trCheckingAuthToLoadingProducts,
     trAuthenticatingToLoadingProducts,
 } from 'features/Authentication/model';
+import { CartState } from 'features/Cart/model';
+import { trCartToCart, trCartToPickingProducts } from 'features/Cart/model';
 import {
     ProductInfoState,
     trProductInfoToPickingProducts,
 } from 'features/ProductInfo/model';
 import {
-    ProductListStoreType,
     LoadingProductsState,
     PickingProductsState,
     ProductListState,
@@ -24,17 +25,19 @@ import {
     trPickingProductsToLoadingProducts,
     trPickingProductsToProductInfo,
     trPickingProductsToPickingProducts,
+    trPickingProductsToCart,
 } from 'features/ProductList/model';
 import { ActionType, FSM, ProtoState, ProtoTransition } from 'lib/FSM';
 import { Stages, TransitionTypes } from './enums';
 import type { ProductType } from './types';
 
-export type { AuthState, ProductListState, ProductInfoState, ProductType };
-
-interface CartState extends ProtoState {
-    stage: Stages['CART'];
-    data: ProductListStoreType;
-}
+export type {
+    ProductType,
+    AuthState,
+    ProductListState,
+    ProductInfoState,
+    CartState,
+};
 
 interface PaymentState extends ProtoState {
     stage: Stages['PAYMENT'];
@@ -50,16 +53,6 @@ export type State =
     | ProductInfoState
     | CartState
     | PaymentState;
-
-const trPickingProductsToCart = {
-    type: TransitionTypes.PICKING_PRODUCTS__CART,
-    from: Stages.PICKING_PRODUCTS,
-    to: Stages.CART,
-    collectData: (state, payload) => ({
-        ...state.data,
-        ...payload,
-    }),
-} satisfies ProtoTransition<PickingProductsState, CartState>;
 
 const trPickingProductsToNotAuthenticated = {
     type: TransitionTypes.PICKING_PRODUCTS__NOT_AUTHENTICATED,
@@ -104,6 +97,8 @@ export type Transition =
     | typeof trProductInfoToPickingProducts
     | typeof trPickingProductsToCart
     | typeof trPickingProductsToNotAuthenticated
+    | typeof trCartToCart
+    | typeof trCartToPickingProducts
     | typeof trCartToPayment
     | typeof trPaymentToPickingProducts;
 
@@ -120,6 +115,8 @@ const transitions = [
     trProductInfoToPickingProducts,
     trPickingProductsToCart,
     trPickingProductsToNotAuthenticated,
+    trCartToCart,
+    trCartToPickingProducts,
     trCartToPayment,
     trPaymentToPickingProducts,
 ];

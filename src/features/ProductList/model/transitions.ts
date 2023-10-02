@@ -1,7 +1,7 @@
+import { CartStages } from 'features/Cart/model/enums';
 import { ProductInfoStages } from 'features/ProductInfo/model/enums';
-import { ProductInfoState } from 'features/ProductInfo/model/types';
 import { ProtoTransition } from 'lib/FSM';
-import { ProductType } from 'store';
+import { ProductType, ProductInfoState, CartState } from 'store';
 import { ProductListStages, ProductListTransitionTypes } from './enums';
 import { LoadingProductsState, PickingProductsState } from './types';
 
@@ -59,3 +59,12 @@ export const trPickingProductsToPickingProducts = {
         ),
     }),
 } satisfies ProtoTransition<PickingProductsState, PickingProductsState>;
+
+export const trPickingProductsToCart = {
+    type: ProductListTransitionTypes.PICKING_PRODUCTS__CART,
+    from: ProductListStages.PICKING_PRODUCTS,
+    to: CartStages.CART,
+    collectData: (state) => ({
+        ...state.data,
+    }),
+} satisfies ProtoTransition<PickingProductsState, CartState>;

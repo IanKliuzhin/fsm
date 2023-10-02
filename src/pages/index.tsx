@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { State } from 'store';
 import { Stages } from 'store/enums';
 import { AuthenticationPage } from './AuthenticationPage';
+import { CartPage } from './CartPage';
 import { ProductInfoPage } from './ProductInfoPage';
 import { ProductListPage } from './ProductListPage';
 
@@ -16,6 +17,8 @@ export const routing = (state: State): ReactNode => {
             return <ProductListPage />;
         case Stages.PRODUCT_INFO:
             return <ProductInfoPage />;
+        case Stages.CART:
+            return <CartPage />;
         default:
             return '';
     }

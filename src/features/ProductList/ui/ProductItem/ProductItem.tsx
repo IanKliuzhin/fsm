@@ -14,14 +14,14 @@ export const ProductItem = ({ product }: { product: ProductType }) => {
         });
     };
 
-    const onClickAdd = () => {
+    const onAddClick = () => {
         dispatch({
             type: ProductListTransitionTypes.PICKING_PRODUCTS__PICKING_PRODUCTS,
             payload: { id, isAdding: true },
         });
     };
 
-    const onClickRemove = () => {
+    const onRemoveClick = () => {
         dispatch({
             type: ProductListTransitionTypes.PICKING_PRODUCTS__PICKING_PRODUCTS,
             payload: { id, isAdding: false },
@@ -39,14 +39,14 @@ export const ProductItem = ({ product }: { product: ProductType }) => {
             <button type="button" onClick={onClickDetails}>
                 Details
             </button>
-            <button type="button" onClick={onClickAdd}>
+            <button type="button" onClick={onAddClick}>
                 Add to cart
             </button>
             {inCartAmount > 0 && (
                 <>
                     Amount in cart: {inCartAmount}
-                    <button type="button" onClick={onClickRemove}>
-                        Remove one from cart
+                    <button type="button" onClick={onRemoveClick}>
+                        Remove
                     </button>
                 </>
             )}
