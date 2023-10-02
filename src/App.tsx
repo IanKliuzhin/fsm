@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Dispatch, useCallback, useEffect, useReducer } from 'react';
+import { ActionType } from 'lib/FSM';
+import { routing } from 'pages';
+import {
+    ActionContext,
+    GetStateContext,
+    Transition,
+    State,
+    reducer,
+    useCheckAuth,
+    initState,
+} from 'store';
+import { Stages } from 'store/enums';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+export const App = () => {
+    const [state, dispatch] = useReducer(reducer, initState);
+    const getState = useCallback(() => state, [state]);
+
+    const checkAuth = useCheckAuth(dispatch, state.data.authService);
+
+    useEffect(() => {
+        if (state.stage === Stages.CHECKING_AUTH) {
+            checkAuth();
+        }
+    }, [state.stage, checkAuth]);
+
+    console.log('Render App', state);
+    return (
+        <ActionContext.Provider
+            value={dispatch as Dispatch<ActionType<State, State, Transition>>}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
+            <GetStateContext.Provider value={getState}>
+                {routing(state)}
+            </GetStateContext.Provider>
+        </ActionContext.Provider>
+    );
+};
