@@ -11,6 +11,8 @@ export {
     trCheckingAuthToNotAuthenticated,
     trNotAuthToAuthenticating,
     trAuthenticatingToNotAuthenticated,
+    trCheckingAuthToLoadingProducts,
+    trAuthenticatingToLoadingProducts,
 } from './transitions';
 
 export { initAuthStore } from './authStore';

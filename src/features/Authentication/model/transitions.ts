@@ -1,3 +1,8 @@
+import {
+    LoadingProductsState,
+    ProductListStages,
+    initProductListStore,
+} from 'features/ProductList/model';
 import { ProtoTransition } from 'lib/FSM';
 import {
     CheckingAuthState,
@@ -35,3 +40,24 @@ export const trAuthenticatingToNotAuthenticated = {
         authError,
     }),
 } satisfies ProtoTransition<AuthenticatingState, NotAuthenticatedState>;
+
+export const trCheckingAuthToLoadingProducts = {
+    type: AuthTransitionTypes.CHECKING_AUTH__LOADING_PRODUCTS,
+    from: AuthStages.CHECKING_AUTH,
+    to: ProductListStages.LOADING_PRODUCTS,
+    collectData: (state) => ({
+        ...state.data,
+        ...initProductListStore,
+    }),
+} satisfies ProtoTransition<CheckingAuthState, LoadingProductsState>;
+
+export const trAuthenticatingToLoadingProducts = {
+    type: AuthTransitionTypes.AUTHENTICATING__LOADING_PRODUCTS,
+    from: AuthStages.AUTHENTICATING,
+    to: ProductListStages.LOADING_PRODUCTS,
+    collectData: (state) => ({
+        ...state.data,
+        authError: null,
+        ...initProductListStore,
+    }),
+} satisfies ProtoTransition<AuthenticatingState, LoadingProductsState>;

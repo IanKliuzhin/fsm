@@ -10,6 +10,8 @@ import {
     trNotAuthToAuthenticating,
     trAuthenticatingToNotAuthenticated,
     initAuthStore,
+    trCheckingAuthToLoadingProducts,
+    trAuthenticatingToLoadingProducts,
 } from '../features/Authentication/model';
 import {
     Product,
@@ -17,7 +19,6 @@ import {
     LoadingProductsState,
     PickingProductsState,
     ProductListState,
-    initProductListStore,
     trLoadingProductsToPickingProducts,
     trPickingProductsToLoadingProducts,
 } from '../features/ProductList/model';
@@ -50,16 +51,6 @@ export type State =
     | CartState
     | PaymentState;
 
-const trCheckingAuthToLoadingProducts = {
-    type: TransitionTypes.CHECKING_AUTH__LOADING_PRODUCTS,
-    from: Stages.CHECKING_AUTH,
-    to: Stages.LOADING_PRODUCTS,
-    collectData: (state) => ({
-        ...state.data,
-        ...initProductListStore,
-    }),
-} satisfies ProtoTransition<CheckingAuthState, LoadingProductsState>;
-
 export const useCheckAuth =
     (dispatch: DispatchType, authService: AuthService) => () => {
         authService
@@ -81,17 +72,6 @@ export const useCheckAuth =
                 console.error(error);
             });
     };
-
-const trAuthenticatingToLoadingProducts = {
-    type: TransitionTypes.AUTHENTICATING__LOADING_PRODUCTS,
-    from: Stages.AUTHENTICATING,
-    to: Stages.LOADING_PRODUCTS,
-    collectData: (state) => ({
-        ...state.data,
-        authError: null,
-        ...initProductListStore,
-    }),
-} satisfies ProtoTransition<AuthenticatingState, LoadingProductsState>;
 
 export const useAuthenticate =
     (dispatch: DispatchType, authService: AuthService) =>
