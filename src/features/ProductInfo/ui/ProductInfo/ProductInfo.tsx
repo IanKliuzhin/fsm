@@ -23,6 +23,7 @@ export const ProductInfo = () => {
             <button type="button" onClick={onClickBack}>
                 Back
             </button>
+            <br />
             {id}. {title}
             <br />
             {description}
@@ -30,8 +31,6 @@ export const ProductInfo = () => {
             Price: ${price}
             <br />
             Brand: ${brand}
-            <br />
-            Category: ${category}
             <br />
             {images.map((src) => (
                 <img key={src} src={src} height={300} alt={title} />
