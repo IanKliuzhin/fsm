@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ProductType } from '../model';
+import type { ProductType } from 'store';
 
 type Response = {
     data: {

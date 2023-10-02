@@ -1,5 +1,4 @@
 import { Dispatch } from 'react';
-import { ActionType, FSM, ProtoState, ProtoTransition } from 'lib/FSM';
 import {
     CheckingAuthState,
     NotAuthenticatedState,
@@ -11,24 +10,25 @@ import {
     initAuthStore,
     trCheckingAuthToLoadingProducts,
     trAuthenticatingToLoadingProducts,
-} from '../features/Authentication/model';
+} from 'features/Authentication/model';
 import {
-    ProductType,
+    ProductInfoState,
+    trProductInfoToPickingProducts,
+} from 'features/ProductInfo/model';
+import {
     ProductListStoreType,
     LoadingProductsState,
     PickingProductsState,
     ProductListState,
     trLoadingProductsToPickingProducts,
     trPickingProductsToLoadingProducts,
-} from '../features/ProductList/model';
+    trPickingProductsToProductInfo,
+} from 'features/ProductList/model';
+import { ActionType, FSM, ProtoState, ProtoTransition } from 'lib/FSM';
 import { Stages, TransitionTypes } from './enums';
+import type { ProductType } from './types';
 
-export type { AuthState, ProductListState };
-
-interface ProductInfoState extends ProtoState {
-    stage: Stages['PRODUCT_INFO'];
-    data: ProductType;
-}
+export type { AuthState, ProductListState, ProductInfoState, ProductType };
 
 interface CartState extends ProtoState {
     stage: Stages['CART'];
@@ -49,26 +49,6 @@ export type State =
     | ProductInfoState
     | CartState
     | PaymentState;
-
-const trPickingProductsToProductInfo = {
-    type: TransitionTypes.PICKING_PRODUCTS__PRODUCT_INFO,
-    from: Stages.PICKING_PRODUCTS,
-    to: Stages.PRODUCT_INFO,
-    collectData: (state, payload) => ({
-        ...state.data,
-        ...payload,
-    }),
-} satisfies ProtoTransition<PickingProductsState, ProductInfoState>;
-
-const trProductInfoToPickingProducts = {
-    type: TransitionTypes.PRODUCT_INFO__PICKING_PRODUCTS,
-    from: Stages.PRODUCT_INFO,
-    to: Stages.PICKING_PRODUCTS,
-    collectData: (state, payload) => ({
-        ...state.data,
-        ...payload,
-    }),
-} satisfies ProtoTransition<ProductInfoState, PickingProductsState>;
 
 const trPickingProductsToCart = {
     type: TransitionTypes.PICKING_PRODUCTS__CART,
