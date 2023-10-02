@@ -60,16 +60,6 @@ const trPickingProductsToCart = {
     }),
 } satisfies ProtoTransition<PickingProductsState, CartState>;
 
-const trProductInfoToCart = {
-    type: TransitionTypes.PRODUCT_INFO__CART,
-    from: Stages.PRODUCT_INFO,
-    to: Stages.CART,
-    collectData: (state, payload) => ({
-        ...state.data,
-        ...payload,
-    }),
-} satisfies ProtoTransition<ProductInfoState, CartState>;
-
 const trPickingProductsToNotAuthenticated = {
     type: TransitionTypes.PICKING_PRODUCTS__NOT_AUTHENTICATED,
     from: Stages.PICKING_PRODUCTS,
@@ -111,7 +101,6 @@ export type Transition =
     | typeof trPickingProductsToProductInfo
     | typeof trProductInfoToPickingProducts
     | typeof trPickingProductsToCart
-    | typeof trProductInfoToCart
     | typeof trPickingProductsToNotAuthenticated
     | typeof trCartToPayment
     | typeof trPaymentToPickingProducts;
@@ -127,7 +116,6 @@ const transitions = [
     trPickingProductsToProductInfo,
     trProductInfoToPickingProducts,
     trPickingProductsToCart,
-    trProductInfoToCart,
     trPickingProductsToNotAuthenticated,
     trCartToPayment,
     trPaymentToPickingProducts,
