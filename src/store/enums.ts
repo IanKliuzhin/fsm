@@ -1,26 +1,25 @@
-export const enum Stages {
-    CHECKING_AUTH = 'CHECKING_AUTH',
-    NOT_AUTHENTICATED = 'NOT_AUTHENTICATED',
-    AUTHENTICATING = 'AUTHENTICATING',
+import { AuthStages, AuthTransitionTypes } from 'features/Authentication/model';
+import {
+    ProductListStages,
+    ProductListTransitionTypes,
+} from 'features/ProductList/model';
 
-    LOADING_PRODUCTS = 'LOADING_PRODUCTS',
-    PICKING_PRODUCTS = 'PICKING_PRODUCTS',
-
+enum RemainingStages {
     PRODUCT_INFO = 'PRODUCT_INFO',
     CART = 'CART',
     PAYMENT = 'PAYMENT',
 }
 
-export const enum TransitionTypes {
-    CHECKING_AUTH__NOT_AUTHENTICATED = 'CHECKING_AUTH__NOT_AUTHENTICATED',
-    NOT_AUTHENTICATED__AUTHENTICATING = 'NOT_AUTHENTICATED__AUTHENTICATING',
-    AUTHENTICATING__NOT_AUTHENTICATED = 'AUTHENTICATING__NOT_AUTHENTICATED',
+export const Stages = {
+    ...AuthStages,
+    ...ProductListStages,
+    ...RemainingStages,
+};
+export type Stages = typeof Stages;
 
+enum RemainingTransitionTypes {
     CHECKING_AUTH__LOADING_PRODUCTS = 'CHECKING_AUTH__LOADING_PRODUCTS',
     AUTHENTICATING__LOADING_PRODUCTS = 'AUTHENTICATING__LOADING_PRODUCTS',
-
-    LOADING_PRODUCTS__PICKING_PRODUCTS = 'LOADING_PRODUCTS__PICKING_PRODUCTS',
-    PICKING_PRODUCTS__LOADING_PRODUCTS = 'PICKING_PRODUCTS__LOADING_PRODUCTS',
 
     PICKING_PRODUCTS__PRODUCT_INFO = 'PICKING_PRODUCTS__PRODUCT_INFO',
     PRODUCT_INFO__PICKING_PRODUCTS = 'PRODUCT_INFO__PICKING_PRODUCTS',
@@ -30,3 +29,10 @@ export const enum TransitionTypes {
     CART__PAYMENT = 'CART__PAYMENT',
     PAYMENT__PICKING_PRODUCTS = 'PAYMENT__PICKING_PRODUCTS',
 }
+
+export const TransitionTypes = {
+    ...AuthTransitionTypes,
+    ...ProductListTransitionTypes,
+    ...RemainingTransitionTypes,
+};
+export type TransitionTypes = typeof TransitionTypes;

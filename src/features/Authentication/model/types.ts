@@ -1,6 +1,17 @@
 import type { AuthService } from 'features';
 import type { ProtoState } from 'lib/FSM';
-import type { Stages } from 'store/enums';
+
+export enum AuthStages {
+    CHECKING_AUTH = 'CHECKING_AUTH',
+    NOT_AUTHENTICATED = 'NOT_AUTHENTICATED',
+    AUTHENTICATING = 'AUTHENTICATING',
+}
+
+export enum AuthTransitionTypes {
+    CHECKING_AUTH__NOT_AUTHENTICATED = 'CHECKING_AUTH__NOT_AUTHENTICATED',
+    NOT_AUTHENTICATED__AUTHENTICATING = 'NOT_AUTHENTICATED__AUTHENTICATING',
+    AUTHENTICATING__NOT_AUTHENTICATED = 'AUTHENTICATING__NOT_AUTHENTICATED',
+}
 
 type Profile = {
     id: number;
@@ -9,24 +20,24 @@ type Profile = {
     avatar: string;
 };
 
-type AuthStoreType = {
+export type AuthStoreType = {
     authService: AuthService;
     authError?: string | null;
     profile?: Profile;
 };
 
 export interface CheckingAuthState extends ProtoState {
-    stage: Stages.CHECKING_AUTH;
+    stage: AuthStages.CHECKING_AUTH;
     data: AuthStoreType;
 }
 
 export interface NotAuthenticatedState extends ProtoState {
-    stage: Stages.NOT_AUTHENTICATED;
+    stage: AuthStages.NOT_AUTHENTICATED;
     data: AuthStoreType;
 }
 
 export interface AuthenticatingState extends ProtoState {
-    stage: Stages.AUTHENTICATING;
+    stage: AuthStages.AUTHENTICATING;
     data: AuthStoreType;
 }
 

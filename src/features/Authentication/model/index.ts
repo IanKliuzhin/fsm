@@ -5,6 +5,8 @@ export type {
     AuthenticatingState,
 } from './types';
 
+export { AuthStages, AuthTransitionTypes } from './types';
+
 export {
     trCheckingAuthToNotAuthenticated,
     trNotAuthToAuthenticating,

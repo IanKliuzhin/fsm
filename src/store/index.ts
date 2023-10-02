@@ -26,17 +26,17 @@ import { Stages, TransitionTypes } from './enums';
 export type { AuthState, ProductListState };
 
 interface ProductInfoState extends ProtoState {
-    stage: Stages.PRODUCT_INFO;
+    stage: Stages['PRODUCT_INFO'];
     data: Product;
 }
 
 interface CartState extends ProtoState {
-    stage: Stages.CART;
+    stage: Stages['CART'];
     data: ProductListStoreType;
 }
 
 interface PaymentState extends ProtoState {
-    stage: Stages.PAYMENT;
+    stage: Stages['PAYMENT'];
     data: any;
 }
 

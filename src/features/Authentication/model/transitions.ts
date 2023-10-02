@@ -1,24 +1,25 @@
 import { ProtoTransition } from 'lib/FSM';
-import { TransitionTypes, Stages } from 'store/enums';
 import {
     CheckingAuthState,
     NotAuthenticatedState,
     AuthenticatingState,
+    AuthTransitionTypes,
+    AuthStages,
 } from './types';
 
 export const trCheckingAuthToNotAuthenticated = {
-    type: TransitionTypes.CHECKING_AUTH__NOT_AUTHENTICATED,
-    from: Stages.CHECKING_AUTH,
-    to: Stages.NOT_AUTHENTICATED,
+    type: AuthTransitionTypes.CHECKING_AUTH__NOT_AUTHENTICATED,
+    from: AuthStages.CHECKING_AUTH,
+    to: AuthStages.NOT_AUTHENTICATED,
     collectData: (state) => ({
         ...state.data,
     }),
 } satisfies ProtoTransition<CheckingAuthState, NotAuthenticatedState>;
 
 export const trNotAuthToAuthenticating = {
-    type: TransitionTypes.NOT_AUTHENTICATED__AUTHENTICATING,
-    from: Stages.NOT_AUTHENTICATED,
-    to: Stages.AUTHENTICATING,
+    type: AuthTransitionTypes.NOT_AUTHENTICATED__AUTHENTICATING,
+    from: AuthStages.NOT_AUTHENTICATED,
+    to: AuthStages.AUTHENTICATING,
     collectData: (state) => ({
         ...state.data,
         authError: null,
@@ -26,9 +27,9 @@ export const trNotAuthToAuthenticating = {
 } satisfies ProtoTransition<NotAuthenticatedState, AuthenticatingState>;
 
 export const trAuthenticatingToNotAuthenticated = {
-    type: TransitionTypes.AUTHENTICATING__NOT_AUTHENTICATED,
-    from: Stages.AUTHENTICATING,
-    to: Stages.NOT_AUTHENTICATED,
+    type: AuthTransitionTypes.AUTHENTICATING__NOT_AUTHENTICATED,
+    from: AuthStages.AUTHENTICATING,
+    to: AuthStages.NOT_AUTHENTICATED,
     collectData: (state, { authError }) => ({
         ...state.data,
         authError,

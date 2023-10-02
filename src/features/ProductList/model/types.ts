@@ -1,6 +1,15 @@
 import type { ProductsService } from 'features';
 import type { ProtoState } from 'lib/FSM';
-import type { Stages } from 'store/enums';
+
+export enum ProductListStages {
+    LOADING_PRODUCTS = 'LOADING_PRODUCTS',
+    PICKING_PRODUCTS = 'PICKING_PRODUCTS',
+}
+
+export enum ProductListTransitionTypes {
+    LOADING_PRODUCTS__PICKING_PRODUCTS = 'LOADING_PRODUCTS__PICKING_PRODUCTS',
+    PICKING_PRODUCTS__LOADING_PRODUCTS = 'PICKING_PRODUCTS__LOADING_PRODUCTS',
+}
 
 export type Product = {
     id: number;
@@ -22,12 +31,12 @@ export type ProductListStoreType = {
 };
 
 export interface LoadingProductsState extends ProtoState {
-    stage: Stages.LOADING_PRODUCTS;
+    stage: ProductListStages.LOADING_PRODUCTS;
     data: ProductListStoreType;
 }
 
 export interface PickingProductsState extends ProtoState {
-    stage: Stages.PICKING_PRODUCTS;
+    stage: ProductListStages.PICKING_PRODUCTS;
     data: ProductListStoreType;
 }
 
