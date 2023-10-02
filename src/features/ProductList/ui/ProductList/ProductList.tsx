@@ -1,13 +1,9 @@
 import { useContext, useEffect } from 'react';
 import { Loader } from 'shared/ui';
-import {
-    ActionContext,
-    GetStateContext,
-    ProductListState,
-    useFetchProducts,
-} from 'store';
+import { ActionContext, GetStateContext, ProductListState } from 'store';
 import { Stages, TransitionTypes } from 'store/enums';
 import { ProductsService } from '../../api';
+import { useFetchProducts } from '../../model';
 import { Product } from '../Product';
 
 export const ProductList = () => {

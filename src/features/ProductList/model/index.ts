@@ -14,3 +14,5 @@ export type {
 } from './types';
 
 export { ProductListStages, ProductListTransitionTypes } from './types';
+
+export { useFetchProducts } from './asyncActions';

@@ -1,5 +1,4 @@
 import { Dispatch } from 'react';
-import type { ProductsService } from 'features';
 import { ActionType, FSM, ProtoState, ProtoTransition } from 'lib/FSM';
 import {
     CheckingAuthState,
@@ -50,17 +49,6 @@ export type State =
     | ProductInfoState
     | CartState
     | PaymentState;
-
-export const useFetchProducts =
-    (dispatch: DispatchType, productsService: ProductsService) =>
-    (productsPage: number) => {
-        productsService.fetchProducts(productsPage).then((products) =>
-            dispatch({
-                type: TransitionTypes.LOADING_PRODUCTS__PICKING_PRODUCTS,
-                payload: { products },
-            }),
-        );
-    };
 
 const trPickingProductsToProductInfo = {
     type: TransitionTypes.PICKING_PRODUCTS__PRODUCT_INFO,
