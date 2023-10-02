@@ -1,4 +1,5 @@
 import { Dispatch, useCallback, useEffect, useReducer } from 'react';
+import { useCheckAuth } from 'features/Authentication/model';
 import { ActionType } from 'lib/FSM';
 import { routing } from 'pages';
 import {
@@ -7,7 +8,6 @@ import {
     Transition,
     State,
     reducer,
-    useCheckAuth,
     initState,
 } from 'store';
 import { Stages } from 'store/enums';

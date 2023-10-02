@@ -35,7 +35,7 @@ export const trAuthenticatingToNotAuthenticated = {
     type: AuthTransitionTypes.AUTHENTICATING__NOT_AUTHENTICATED,
     from: AuthStages.AUTHENTICATING,
     to: AuthStages.NOT_AUTHENTICATED,
-    collectData: (state, { authError }) => ({
+    collectData: (state, { authError }: { authError: string }) => ({
         ...state.data,
         authError,
     }),

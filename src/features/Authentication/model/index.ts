@@ -16,3 +16,5 @@ export {
 } from './transitions';
 
 export { initAuthStore } from './authStore';
+
+export { useCheckAuth, useAuthenticate } from './asyncActions';

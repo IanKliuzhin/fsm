@@ -1,12 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 import { Input, Loader } from 'shared/ui';
-import {
-    ActionContext,
-    GetStateContext,
-    AuthState,
-    useAuthenticate,
-} from 'store';
+import { ActionContext, GetStateContext, AuthState } from 'store';
 import { Stages, TransitionTypes } from 'store/enums';
+import { useAuthenticate } from '../model';
 
 export const Authentication = () => {
     const [email, setEmail] = useState('');

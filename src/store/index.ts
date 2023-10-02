@@ -1,5 +1,5 @@
 import { Dispatch } from 'react';
-import type { AuthService, ProductsService } from 'features';
+import type { ProductsService } from 'features';
 import { ActionType, FSM, ProtoState, ProtoTransition } from 'lib/FSM';
 import {
     CheckingAuthState,
@@ -50,49 +50,6 @@ export type State =
     | ProductInfoState
     | CartState
     | PaymentState;
-
-export const useCheckAuth =
-    (dispatch: DispatchType, authService: AuthService) => () => {
-        authService
-            .checkAuth()
-            .then((result: boolean) => {
-                if (result) {
-                    dispatch({
-                        type: TransitionTypes.CHECKING_AUTH__LOADING_PRODUCTS,
-                        payload: { products: [] },
-                    });
-                } else {
-                    dispatch({
-                        type: TransitionTypes.CHECKING_AUTH__NOT_AUTHENTICATED,
-                        payload: {},
-                    });
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    };
-
-export const useAuthenticate =
-    (dispatch: DispatchType, authService: AuthService) =>
-    (email: string, password: string) => {
-        authService
-            .authenticate({ email, password })
-            .then(() => {
-                dispatch({
-                    type: TransitionTypes.AUTHENTICATING__LOADING_PRODUCTS,
-                    payload: { products: [] },
-                });
-            })
-            .catch(() => {
-                dispatch({
-                    type: TransitionTypes.AUTHENTICATING__NOT_AUTHENTICATED,
-                    payload: {
-                        authError: 'Invalid email/password. Try again.',
-                    },
-                });
-            });
-    };
 
 export const useFetchProducts =
     (dispatch: DispatchType, productsService: ProductsService) =>
