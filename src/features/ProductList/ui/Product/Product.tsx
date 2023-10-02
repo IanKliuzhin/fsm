@@ -1,19 +1,6 @@
-export const Product = ({
-    product,
-}: {
-    product: {
-        id: number;
-        title: string;
-        price: number;
-        description: string;
-        category: {
-            id: number;
-            name: string;
-            image: string;
-        };
-        images: string[];
-    };
-}) => {
+import { ProductType } from '../../model';
+
+export const Product = ({ product }: { product: ProductType }) => {
     const { id, title, description, price, images } = product;
     return (
         <div>

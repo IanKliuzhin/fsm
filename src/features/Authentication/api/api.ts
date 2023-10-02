@@ -26,15 +26,12 @@ export class AuthService {
         if (this.accessToken) {
             console.log('this.accessToken', this.accessToken);
             return axios
-                .get('https://api.escuelajs.co/api/v1/auth/profile', {
+                .get('https://dummyjson.com/auth', {
                     headers: {
                         Authorization: `Bearer ${this.accessToken}`,
                     },
                 })
-                .then((response) => {
-                    console.log('checkAuth response', response);
-                    return true;
-                })
+                .then((response) => response.status === 200)
                 .catch((err) => {
                     console.error(err);
                     return false;
@@ -43,10 +40,10 @@ export class AuthService {
     }
 
     async authenticate({
-        email,
+        username,
         password,
     }: {
-        email: string;
+        username: string;
         password: string;
     }) {
         this.setToken();
@@ -55,15 +52,15 @@ export class AuthService {
                 unknown,
                 {
                     data: {
-                        access_token: string;
+                        token: string;
                     };
                 }
-            >('https://api.escuelajs.co/api/v1/auth/login', {
-                email,
+            >('https://dummyjson.com/auth/login', {
+                username,
                 password,
             })
-            .then(({ data: { access_token } }) => {
-                this.setToken(access_token);
+            .then(({ data: { token } }) => {
+                this.setToken(token);
             });
     }
 }

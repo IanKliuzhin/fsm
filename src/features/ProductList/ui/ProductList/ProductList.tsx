@@ -35,7 +35,7 @@ export const ProductList = () => {
     };
 
     const isAllLoaded =
-        (productsPage + 1) * ProductsService.LIMIT < ProductsService.MAX_AMOUNT;
+        (productsPage + 1) * ProductsService.LIMIT < productsService.total;
 
     return (
         <div>

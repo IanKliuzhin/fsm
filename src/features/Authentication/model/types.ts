@@ -19,9 +19,12 @@ export enum AuthTransitionTypes {
 
 type Profile = {
     id: number;
-    name: string;
-    role: string;
-    avatar: string;
+    username: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    gender: 'male' | 'female';
+    image: string;
 };
 
 export type AuthStoreType = {

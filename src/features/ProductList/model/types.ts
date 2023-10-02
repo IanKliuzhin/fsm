@@ -11,21 +11,22 @@ export enum ProductListTransitionTypes {
     PICKING_PRODUCTS__LOADING_PRODUCTS = 'PICKING_PRODUCTS__LOADING_PRODUCTS',
 }
 
-export type Product = {
+export type ProductType = {
     id: number;
     title: string;
-    price: number;
     description: string;
-    category: {
-        id: number;
-        name: string;
-        image: string;
-    };
-    images: string[];
+    price: number;
+    discountPercentage: number;
+    rating: number;
+    stock: number;
+    brand: string;
+    category: string;
+    thumbnail: string;
+    images: [string, string, string];
 };
 
 export type ProductListStoreType = {
-    products: Product[];
+    products: ProductType[];
     productsService: ProductsService;
     productsPage: number;
 };

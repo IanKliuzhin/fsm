@@ -9,7 +9,7 @@ export type {
     LoadingProductsState,
     PickingProductsState,
     ProductListState,
-    Product,
+    ProductType,
     ProductListStoreType,
 } from './types';
 

@@ -35,9 +35,9 @@ export const useCheckAuth =
 
 export const useAuthenticate =
     (dispatch: DispatchType, authService: AuthService) =>
-    (email: string, password: string) => {
+    (username: string, password: string) => {
         authService
-            .authenticate({ email, password })
+            .authenticate({ username, password })
             .then(() => {
                 dispatch({
                     type: AuthTransitionTypes.AUTHENTICATING__LOADING_PRODUCTS,
@@ -48,7 +48,7 @@ export const useAuthenticate =
                 dispatch({
                     type: AuthTransitionTypes.AUTHENTICATING__NOT_AUTHENTICATED,
                     payload: {
-                        authError: 'Invalid email/password. Try again.',
+                        authError: 'Invalid username/password. Try again.',
                     },
                 });
             });

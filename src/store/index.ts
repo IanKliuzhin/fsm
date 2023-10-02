@@ -14,7 +14,7 @@ import {
     trAuthenticatingToLoadingProducts,
 } from '../features/Authentication/model';
 import {
-    Product,
+    ProductType,
     ProductListStoreType,
     LoadingProductsState,
     PickingProductsState,
@@ -28,7 +28,7 @@ export type { AuthState, ProductListState };
 
 interface ProductInfoState extends ProtoState {
     stage: Stages['PRODUCT_INFO'];
-    data: Product;
+    data: ProductType;
 }
 
 interface CartState extends ProtoState {

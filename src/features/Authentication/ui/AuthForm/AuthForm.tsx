@@ -5,7 +5,7 @@ import { Stages, TransitionTypes } from 'store/enums';
 import { useAuthenticate } from '../..//model';
 
 export const AuthForm = () => {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const dispatch = useContext(ActionContext);
@@ -28,21 +28,21 @@ export const AuthForm = () => {
 
     useEffect(() => {
         if (stage === Stages.AUTHENTICATING) {
-            authenticate(email, password);
+            authenticate(username, password);
         }
-    }, [stage, authenticate, email, password]);
+    }, [stage, authenticate, username, password]);
 
     console.log('Render Authform', state);
 
     return (
         <form onSubmit={onSubmit}>
             <Input
-                value={email}
+                value={username}
                 type="text"
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setEmail(e.target.value)
+                    setUsername(e.target.value)
                 }
-                placeholder="email"
+                placeholder="username"
             />
             <Input
                 value={password}
