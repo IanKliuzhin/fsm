@@ -4,7 +4,7 @@ import { ActionContext, GetStateContext, ProductListState } from 'store';
 import { Stages, TransitionTypes } from 'store/enums';
 import { ProductsService } from '../../api';
 import { useFetchProducts } from '../../model';
-import { Product } from '../Product';
+import { ProductItem } from '../ProductItem';
 
 export const ProductList = () => {
     const dispatch = useContext(ActionContext);
@@ -37,7 +37,7 @@ export const ProductList = () => {
         <div>
             Product list:
             {products.map((product) => (
-                <Product key={product.id} product={product} />
+                <ProductItem key={product.id} product={product} />
             ))}
             {stage === Stages.PICKING_PRODUCTS && isAllLoaded && (
                 <button type="button" onClick={onClickLoadMore}>

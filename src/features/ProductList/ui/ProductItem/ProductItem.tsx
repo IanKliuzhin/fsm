@@ -1,6 +1,6 @@
 import { ProductType } from '../../model';
 
-export const Product = ({ product }: { product: ProductType }) => {
+export const ProductItem = ({ product }: { product: ProductType }) => {
     const { id, title, description, price, images } = product;
     return (
         <div>
