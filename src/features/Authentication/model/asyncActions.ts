@@ -1,7 +1,7 @@
 import { initProductListStore } from 'features/ProductList/model';
 import { DispatchType } from 'store';
 import type { AuthService } from '../api';
-import { AuthTransitionTypes } from './types';
+import { AuthTransitionTypes } from './enums';
 
 export const useCheckAuth =
     (dispatch: DispatchType, authService: AuthService) => () => {

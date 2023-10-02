@@ -1,6 +1,6 @@
 import { DispatchType } from 'store';
 import type { ProductsService } from '../api';
-import { ProductListTransitionTypes } from './types';
+import { ProductListTransitionTypes } from './enums';
 
 export const useFetchProducts =
     (dispatch: DispatchType, productsService: ProductsService) =>

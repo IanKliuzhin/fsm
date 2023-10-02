@@ -1,10 +1,6 @@
 import { ProtoTransition } from 'lib/FSM';
-import {
-    LoadingProductsState,
-    PickingProductsState,
-    ProductListStages,
-    ProductListTransitionTypes,
-} from './types';
+import { ProductListStages, ProductListTransitionTypes } from './enums';
+import { LoadingProductsState, PickingProductsState } from './types';
 
 export const trLoadingProductsToPickingProducts = {
     type: ProductListTransitionTypes.LOADING_PRODUCTS__PICKING_PRODUCTS,

@@ -1,29 +1,7 @@
 import type { ProductsService } from 'features';
 import type { ProtoState } from 'lib/FSM';
-
-export enum ProductListStages {
-    LOADING_PRODUCTS = 'LOADING_PRODUCTS',
-    PICKING_PRODUCTS = 'PICKING_PRODUCTS',
-}
-
-export enum ProductListTransitionTypes {
-    LOADING_PRODUCTS__PICKING_PRODUCTS = 'LOADING_PRODUCTS__PICKING_PRODUCTS',
-    PICKING_PRODUCTS__LOADING_PRODUCTS = 'PICKING_PRODUCTS__LOADING_PRODUCTS',
-}
-
-export type ProductType = {
-    id: number;
-    title: string;
-    description: string;
-    price: number;
-    discountPercentage: number;
-    rating: number;
-    stock: number;
-    brand: string;
-    category: string;
-    thumbnail: string;
-    images: [string, string, string];
-};
+import type { ProductType } from 'store';
+import { ProductListStages } from './enums';
 
 export type ProductListStoreType = {
     products: ProductType[];

@@ -1,15 +1,14 @@
 import {
     LoadingProductsState,
-    ProductListStages,
     initProductListStore,
 } from 'features/ProductList/model';
+import { ProductListStages } from 'features/ProductList/model/enums';
 import { ProtoTransition } from 'lib/FSM';
+import { AuthStages, AuthTransitionTypes } from './enums';
 import {
     CheckingAuthState,
     NotAuthenticatedState,
     AuthenticatingState,
-    AuthTransitionTypes,
-    AuthStages,
 } from './types';
 
 export const trCheckingAuthToNotAuthenticated = {

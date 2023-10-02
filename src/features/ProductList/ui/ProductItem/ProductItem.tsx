@@ -1,4 +1,4 @@
-import { ProductType } from '../../model';
+import type { ProductType } from 'store';
 
 export const ProductItem = ({ product }: { product: ProductType }) => {
     const { id, title, description, price, images } = product;

@@ -1,8 +1,11 @@
-import { AuthStages, AuthTransitionTypes } from 'features/Authentication/model';
+import {
+    AuthStages,
+    AuthTransitionTypes,
+} from 'features/Authentication/model/enums';
 import {
     ProductListStages,
     ProductListTransitionTypes,
-} from 'features/ProductList/model';
+} from 'features/ProductList/model/enums';
 
 enum RemainingStages {
     PRODUCT_INFO = 'PRODUCT_INFO',
@@ -18,8 +21,6 @@ export const Stages = {
 export type Stages = typeof Stages;
 
 enum RemainingTransitionTypes {
-    PICKING_PRODUCTS__PRODUCT_INFO = 'PICKING_PRODUCTS__PRODUCT_INFO',
-    PRODUCT_INFO__PICKING_PRODUCTS = 'PRODUCT_INFO__PICKING_PRODUCTS',
     PICKING_PRODUCTS__CART = 'PICKING_PRODUCTS__CART',
     PRODUCT_INFO__CART = 'PRODUCT_INFO__CART',
     PICKING_PRODUCTS__NOT_AUTHENTICATED = 'PICKING_PRODUCTS__NOT_AUTHENTICATED',
