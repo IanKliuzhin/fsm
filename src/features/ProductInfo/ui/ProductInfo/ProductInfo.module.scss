@@ -1,0 +1,22 @@
+.productInfo {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 30px 20px;
+
+    .images {
+        position: relative;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-content: space-between;
+        width: 100%;
+        margin-top: 20px;
+
+        img {
+            width: 30%;
+            margin-bottom: 15px;
+        }
+    }
+}
