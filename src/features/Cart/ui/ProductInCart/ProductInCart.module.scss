@@ -1,15 +1,17 @@
-.productItem {
+.cartProduct {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
     height: 120px;
     padding: 10px 0;
     border-bottom: 2px solid #eee;
 
     .thumbnail {
-        height: 100px;
+        width: 267px;
+        height: 80px;
         cursor: pointer;
+        object-fit: contain;
     }
 
     .description {
@@ -17,6 +19,7 @@
         flex-flow: column nowrap;
         justify-content: space-between;
         align-items: flex-start;
+        margin-left: 15px;
         text-align: left;
     }
 
@@ -26,5 +29,6 @@
         justify-content: space-between;
         align-items: flex-end;
         width: 165px;
+        margin-left: auto;
     }
 }

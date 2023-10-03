@@ -1,7 +1,9 @@
 import { useContext } from 'react';
+import { Button } from 'shared/ui';
 import { ActionContext, CartState, GetStateContext } from 'store';
 import { TransitionTypes } from 'store/enums';
 import { ProductInCart } from '../ProductInCart';
+import classes from './Cart.module.scss';
 
 export const Cart = () => {
     const state = useContext(GetStateContext)();
@@ -28,23 +30,28 @@ export const Cart = () => {
         });
     };
 
+    if (productsInCart.length === 0)
+        return (
+            <div className={classes.cart}>
+                <h1>No items left.</h1>
+            </div>
+        );
+
     return (
-        <div>
-            {productsInCart.length === 0 ? (
-                'No items left.'
-            ) : (
-                <>
-                    {productsInCart.map((product) => (
-                        <ProductInCart key={product.id} product={product} />
-                    ))}
-                    <br />
-                    <br />
+        <div className={classes.cart}>
+            {productsInCart.map((product) => (
+                <ProductInCart key={product.id} product={product} />
+            ))}
+            <div className={classes.goToPay}>
+                <span className={classes.price}>
                     Total price: ${totalPrice}
-                    <button type="button" onClick={onPaymentClick}>
-                        Go to payment
-                    </button>
-                </>
-            )}
+                </span>
+                <Button
+                    type="button"
+                    onClick={onPaymentClick}
+                    text="Go to payment"
+                />
+            </div>
         </div>
     );
 };

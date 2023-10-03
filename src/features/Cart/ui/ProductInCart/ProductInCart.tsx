@@ -1,9 +1,11 @@
 import { useContext } from 'react';
+import { Button } from 'shared/ui';
 import { ActionContext, ProductType } from 'store';
 import { TransitionTypes } from 'store/enums';
+import classes from './ProductInCart.module.scss';
 
 export const ProductInCart = ({ product }: { product: ProductType }) => {
-    const { id, title, brand, price, thumbnail, inCartAmount } = product;
+    const { id, title, price, thumbnail, inCartAmount } = product;
     const dispatch = useContext(ActionContext);
 
     const onAddClick = () => {
@@ -21,21 +23,19 @@ export const ProductInCart = ({ product }: { product: ProductType }) => {
     };
 
     return (
-        <div>
-            {' '}
-            {id}. {title}
-            <br />
-            {brand}
-            <img src={thumbnail} alt={title} height="100" />
-            <button type="button" onClick={onRemoveClick}>
-                Remove
-            </button>
-            Amount in cart: {inCartAmount}
-            <button type="button" onClick={onAddClick}>
-                Add to cart
-            </button>
-            <br />
-            Price: ${price * inCartAmount}
+        <div className={classes.cartProduct}>
+            <img className={classes.thumbnail} src={thumbnail} alt={title} />
+            <div className={classes.description}>
+                <span>
+                    {id}. {title}
+                </span>
+                <span>Price: ${price * inCartAmount}</span>
+            </div>
+            <div className={classes.choice}>
+                <Button onClick={onRemoveClick} text="Remove" />
+                Amount: {inCartAmount}
+                <Button onClick={onAddClick} text="Add" />
+            </div>
         </div>
     );
 };
