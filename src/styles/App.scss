@@ -13,3 +13,10 @@
 .App {
     width: 100%;
 }
+
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+    outline: none;
+}

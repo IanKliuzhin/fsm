@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import classes from './Input.module.scss';
 
 type Props = React.DetailedHTMLProps<
     React.InputHTMLAttributes<HTMLInputElement>,
@@ -6,10 +6,9 @@ type Props = React.DetailedHTMLProps<
 >;
 
 export const Input = (props: Props) => {
-    const ref = useRef<HTMLInputElement>(null);
     return (
-        <div>
-            <input {...props} ref={ref} />
+        <div className={classes.input_wrapper}>
+            <input {...props} />
         </div>
     );
 };
