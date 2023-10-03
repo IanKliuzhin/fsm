@@ -1,7 +1,9 @@
 import { useContext } from 'react';
+import { Button } from 'shared/ui';
 import { ActionContext } from 'store';
 import type { ProductType } from 'store';
 import { ProductListTransitionTypes } from '../../model/enums';
+import classes from './ProductItem.module.scss';
 
 export const ProductItem = ({ product }: { product: ProductType }) => {
     const { id, title, brand, price, thumbnail, inCartAmount } = product;
@@ -29,27 +31,30 @@ export const ProductItem = ({ product }: { product: ProductType }) => {
     };
 
     return (
-        <div>
-            {id}. {title}
-            <br />
-            {brand}
-            <br />
-            Price: ${price}
-            <img src={thumbnail} alt={title} height="100" />
-            <button type="button" onClick={onClickDetails}>
-                Details
-            </button>
-            <button type="button" onClick={onAddClick}>
-                Add to cart
-            </button>
-            {inCartAmount > 0 && (
-                <>
-                    Amount in cart: {inCartAmount}
-                    <button type="button" onClick={onRemoveClick}>
-                        Remove
-                    </button>
-                </>
-            )}
+        <div className={classes.productItem}>
+            <div className={classes.description}>
+                <span>
+                    {id}. {title}
+                </span>
+                <span>{brand}</span>
+                <span>Price: ${price}</span>
+                <Button onClick={onClickDetails} text="Details" />
+            </div>
+            <img
+                className={classes.thumbnail}
+                src={thumbnail}
+                alt={title}
+                onClick={onClickDetails}
+            />
+            <div className={classes.choice}>
+                <Button onClick={onAddClick} text="Add to cart" />
+                {inCartAmount > 0 && (
+                    <>
+                        <span>Amount in the cart: {inCartAmount}</span>
+                        <Button onClick={onRemoveClick} text="Remove" />
+                    </>
+                )}
+            </div>
         </div>
     );
 };

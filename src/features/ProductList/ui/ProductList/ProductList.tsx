@@ -1,10 +1,11 @@
 import { useContext, useEffect } from 'react';
-import { Loader } from 'shared/ui';
+import { Button, Loader } from 'shared/ui';
 import { ActionContext, GetStateContext, ProductListState } from 'store';
 import { Stages, TransitionTypes } from 'store/enums';
 import { ProductsService } from '../../api';
 import { useFetchProducts } from '../../model';
 import { ProductItem } from '../ProductItem';
+import classes from './ProductList.module.scss';
 
 export const ProductList = () => {
     const dispatch = useContext(ActionContext);
@@ -34,15 +35,17 @@ export const ProductList = () => {
         (productsPage + 1) * ProductsService.LIMIT < productsService.total;
 
     return (
-        <div>
-            Product list:
+        <div className={classes.productList}>
+            <h1>Product list</h1>
             {products.map((product) => (
                 <ProductItem key={product.id} product={product} />
             ))}
             {stage === Stages.PICKING_PRODUCTS && isAllLoaded && (
-                <button type="button" onClick={onLoadMoreClick}>
-                    Load 10 more
-                </button>
+                <Button
+                    onClick={onLoadMoreClick}
+                    text="Load 10 more"
+                    className={classes.loadMore}
+                />
             )}
             {stage === Stages.LOADING_PRODUCTS && <Loader />}
         </div>

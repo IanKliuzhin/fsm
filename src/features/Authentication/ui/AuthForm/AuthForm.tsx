@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Input, Loader } from 'shared/ui';
-import { Button } from 'shared/ui/Button';
+import { Input, Loader, Button } from 'shared/ui';
 import { ActionContext, AuthState, GetStateContext } from 'store';
 import { Stages, TransitionTypes } from 'store/enums';
 import { useAuthenticate } from '../../model';

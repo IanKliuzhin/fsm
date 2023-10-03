@@ -1,0 +1,14 @@
+.productList {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+
+    .loadMore {
+        margin-top: 15px;
+    }
+}
