@@ -32,8 +32,6 @@ export const AuthForm = () => {
         }
     }, [stage, authenticate, username, password]);
 
-    console.log('Render Authform', state);
-
     return (
         <form onSubmit={onSubmit}>
             <Input
@@ -44,6 +42,7 @@ export const AuthForm = () => {
                 }
                 placeholder="username"
             />
+            atuny0
             <Input
                 value={password}
                 type="password"
@@ -52,6 +51,7 @@ export const AuthForm = () => {
                 }
                 placeholder="Password"
             />
+            9uQFF1Lh
             <button type="submit">Authentication</button>
             {authError ? (
                 <>

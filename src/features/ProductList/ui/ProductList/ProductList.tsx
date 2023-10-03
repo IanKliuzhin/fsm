@@ -4,7 +4,6 @@ import { ActionContext, GetStateContext, ProductListState } from 'store';
 import { Stages, TransitionTypes } from 'store/enums';
 import { ProductsService } from '../../api';
 import { useFetchProducts } from '../../model';
-import { CartIcon } from '../CartIcon';
 import { ProductItem } from '../ProductItem';
 
 export const ProductList = () => {
@@ -13,7 +12,7 @@ export const ProductList = () => {
 
     const {
         stage,
-        data: { products, productsService, productsPage, productsInCartAmount },
+        data: { products, productsService, productsPage },
     } = state as ProductListState;
 
     const fetchProducts = useFetchProducts(dispatch, productsService);
@@ -34,17 +33,8 @@ export const ProductList = () => {
     const isAllLoaded =
         (productsPage + 1) * ProductsService.LIMIT < productsService.total;
 
-    const openCart = () => {
-        dispatch({
-            type: TransitionTypes.PICKING_PRODUCTS__CART,
-            payload: {},
-        });
-    };
-
     return (
         <div>
-            <CartIcon amount={productsInCartAmount} open={openCart} />
-            <br />
             Product list:
             {products.map((product) => (
                 <ProductItem key={product.id} product={product} />

@@ -1,9 +1,11 @@
 import type { ProductsService } from 'features';
+import { AuthStoreType } from 'features/Authentication/model';
 import type { ProtoState } from 'lib/FSM';
-import type { ProductType } from 'store';
+import type { ProductType, Profile } from 'store';
 import { ProductListStages } from './enums';
 
-export type ProductListStoreType = {
+export type ProductListStoreType = AuthStoreType & {
+    profile: Profile;
     products: ProductType[];
     productsService: ProductsService;
     productsPage: number;

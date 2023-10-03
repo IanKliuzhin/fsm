@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Profile } from 'store';
 
 export class AuthService {
     static ITEM = 'accessToken';
@@ -22,45 +23,27 @@ export class AuthService {
         }
     }
 
-    async checkAuth(): Promise<boolean> {
-        if (this.accessToken) {
-            console.log('this.accessToken', this.accessToken);
-            return axios
-                .get('https://dummyjson.com/auth', {
-                    headers: {
-                        Authorization: `Bearer ${this.accessToken}`,
-                    },
-                })
-                .then((response) => response.status === 200)
-                .catch((err) => {
-                    console.error(err);
-                    return false;
-                });
-        } else return false;
-    }
-
     async authenticate({
         username,
         password,
     }: {
         username: string;
         password: string;
-    }) {
+    }): Promise<Profile | void> {
         this.setToken();
         return axios
             .post<
                 unknown,
                 {
-                    data: {
-                        token: string;
-                    };
+                    data: Profile;
                 }
             >('https://dummyjson.com/auth/login', {
                 username,
                 password,
             })
-            .then(({ data: { token } }) => {
-                this.setToken(token);
+            .then(({ data }) => {
+                this.setToken(data.token);
+                return data;
             });
     }
 }

@@ -1,5 +1,10 @@
-import { Payment } from 'features';
+import { Header, Payment } from 'features';
 
 export const PaymentPage = () => {
-    return <Payment />;
+    return (
+        <>
+            <Header />
+            <Payment />
+        </>
+    );
 };

@@ -1,14 +1,11 @@
 import { Dispatch } from 'react';
 import {
-    CheckingAuthState,
     NotAuthenticatedState,
     AuthenticatingState,
     AuthState,
-    trCheckingAuthToNotAuthenticated,
     trNotAuthToAuthenticating,
     trAuthenticatingToNotAuthenticated,
     initAuthStore,
-    trCheckingAuthToLoadingProducts,
     trAuthenticatingToLoadingProducts,
 } from 'features/Authentication/model';
 import { CartState, trCartToPayment } from 'features/Cart/model';
@@ -33,12 +30,14 @@ import {
     trPickingProductsToProductInfo,
     trPickingProductsToPickingProducts,
     trPickingProductsToCart,
+    trPickingProductsToNotAuthenticated,
 } from 'features/ProductList/model';
-import { ActionType, FSM, ProtoTransition } from 'lib/FSM';
-import { Stages, TransitionTypes } from './enums';
-import type { ProductType } from './types';
+import { ActionType, FSM } from 'lib/FSM';
+import { Stages } from './enums';
+import type { ProductType, Profile } from './types';
 
 export type {
+    Profile,
     ProductType,
     AuthState,
     ProductListState,
@@ -48,7 +47,6 @@ export type {
 };
 
 export type State =
-    | CheckingAuthState
     | NotAuthenticatedState
     | AuthenticatingState
     | LoadingProductsState
@@ -57,19 +55,7 @@ export type State =
     | CartState
     | PayState;
 
-const trPickingProductsToNotAuthenticated = {
-    type: TransitionTypes.PICKING_PRODUCTS__NOT_AUTHENTICATED,
-    from: Stages.PICKING_PRODUCTS,
-    to: Stages.NOT_AUTHENTICATED,
-    collectData: (state, payload) => ({
-        ...state.data,
-        ...payload,
-    }),
-} satisfies ProtoTransition<PickingProductsState, NotAuthenticatedState>;
-
 export type Transition =
-    | typeof trCheckingAuthToNotAuthenticated
-    | typeof trCheckingAuthToLoadingProducts
     | typeof trNotAuthToAuthenticating
     | typeof trAuthenticatingToNotAuthenticated
     | typeof trAuthenticatingToLoadingProducts
@@ -89,8 +75,6 @@ export type Transition =
     | typeof trPaidToPickingProducts;
 
 const transitions = [
-    trCheckingAuthToNotAuthenticated,
-    trCheckingAuthToLoadingProducts,
     trNotAuthToAuthenticating,
     trAuthenticatingToNotAuthenticated,
     trAuthenticatingToLoadingProducts,
@@ -111,9 +95,9 @@ const transitions = [
 ];
 
 export const initState = {
-    stage: Stages.CHECKING_AUTH,
+    stage: Stages.NOT_AUTHENTICATED,
     data: initAuthStore,
-} satisfies CheckingAuthState;
+} satisfies NotAuthenticatedState;
 
 const fsm = new FSM<State, Transition>(transitions, initState);
 

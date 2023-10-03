@@ -21,13 +21,6 @@ export const Cart = () => {
         0,
     );
 
-    const onBackClick = () => {
-        dispatch({
-            type: TransitionTypes.CART__PICKING_PRODUCTS,
-            payload: {},
-        });
-    };
-
     const onPaymentClick = () => {
         dispatch({
             type: TransitionTypes.CART__PAYMENT,
@@ -37,10 +30,6 @@ export const Cart = () => {
 
     return (
         <div>
-            <button type="button" onClick={onBackClick}>
-                Back
-            </button>
-            <br />
             {productsInCart.length === 0 ? (
                 'No items left.'
             ) : (

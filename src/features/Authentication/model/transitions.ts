@@ -5,20 +5,7 @@ import {
 import { ProductListStages } from 'features/ProductList/model/enums';
 import { ProtoTransition } from 'lib/FSM';
 import { AuthStages, AuthTransitionTypes } from './enums';
-import {
-    CheckingAuthState,
-    NotAuthenticatedState,
-    AuthenticatingState,
-} from './types';
-
-export const trCheckingAuthToNotAuthenticated = {
-    type: AuthTransitionTypes.CHECKING_AUTH__NOT_AUTHENTICATED,
-    from: AuthStages.CHECKING_AUTH,
-    to: AuthStages.NOT_AUTHENTICATED,
-    collectData: (state) => ({
-        ...state.data,
-    }),
-} satisfies ProtoTransition<CheckingAuthState, NotAuthenticatedState>;
+import { NotAuthenticatedState, AuthenticatingState } from './types';
 
 export const trNotAuthToAuthenticating = {
     type: AuthTransitionTypes.NOT_AUTHENTICATED__AUTHENTICATING,
@@ -40,23 +27,14 @@ export const trAuthenticatingToNotAuthenticated = {
     }),
 } satisfies ProtoTransition<AuthenticatingState, NotAuthenticatedState>;
 
-export const trCheckingAuthToLoadingProducts = {
-    type: AuthTransitionTypes.CHECKING_AUTH__LOADING_PRODUCTS,
-    from: AuthStages.CHECKING_AUTH,
-    to: ProductListStages.LOADING_PRODUCTS,
-    collectData: (state) => ({
-        ...state.data,
-        ...initProductListStore,
-    }),
-} satisfies ProtoTransition<CheckingAuthState, LoadingProductsState>;
-
 export const trAuthenticatingToLoadingProducts = {
     type: AuthTransitionTypes.AUTHENTICATING__LOADING_PRODUCTS,
     from: AuthStages.AUTHENTICATING,
     to: ProductListStages.LOADING_PRODUCTS,
-    collectData: (state) => ({
+    collectData: (state, { profile }) => ({
         ...state.data,
         authError: null,
         ...initProductListStore,
+        profile,
     }),
 } satisfies ProtoTransition<AuthenticatingState, LoadingProductsState>;

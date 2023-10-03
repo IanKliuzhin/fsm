@@ -25,16 +25,11 @@ export const Stages = {
 };
 export type Stages = typeof Stages;
 
-enum RemainingTransitionTypes {
-    PICKING_PRODUCTS__NOT_AUTHENTICATED = 'PICKING_PRODUCTS__NOT_AUTHENTICATED',
-}
-
 export const TransitionTypes = {
     ...AuthTransitionTypes,
     ...ProductListTransitionTypes,
     ...ProductInfoTransitionTypes,
     ...CartTransitionTypes,
     ...PaymentTransitionTypes,
-    ...RemainingTransitionTypes,
 };
 export type TransitionTypes = typeof TransitionTypes;

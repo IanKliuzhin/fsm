@@ -1,5 +1,10 @@
-import { ProductList } from 'features';
+import { Header, ProductList } from 'features';
 
 export const ProductListPage = () => {
-    return <ProductList />;
+    return (
+        <>
+            <Header />
+            <ProductList />
+        </>
+    );
 };

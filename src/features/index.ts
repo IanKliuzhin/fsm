@@ -11,3 +11,5 @@ export { ProductInfo } from './ProductInfo';
 export { Cart } from './Cart';
 
 export { Payment } from './Payment';
+
+export { Header } from './Header';

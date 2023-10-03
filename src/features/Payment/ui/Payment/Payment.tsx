@@ -26,13 +26,6 @@ export const Payment = () => {
         0,
     );
 
-    const onBackClick = () => {
-        dispatch({
-            type: TransitionTypes.PAYMENT__CART,
-            payload: {},
-        });
-    };
-
     const onNewPurchaseClick = () => {
         dispatch({
             type: TransitionTypes.PAID__PICKING_PRODUCTS,
@@ -52,9 +45,6 @@ export const Payment = () => {
 
     return (
         <div>
-            <button type="button" onClick={onBackClick}>
-                Back
-            </button>
             <br />
             {productsInCart.map(({ id, title, price, inCartAmount }, index) => (
                 <Fragment key={id}>

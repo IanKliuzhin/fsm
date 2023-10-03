@@ -1,39 +1,16 @@
-import { initProductListStore } from 'features/ProductList/model';
 import { DispatchType } from 'store';
 import type { AuthService } from '../api';
 import { AuthTransitionTypes } from './enums';
-
-export const useCheckAuth =
-    (dispatch: DispatchType, authService: AuthService) => () => {
-        authService
-            .checkAuth()
-            .then((result: boolean) => {
-                if (result) {
-                    dispatch({
-                        type: AuthTransitionTypes.CHECKING_AUTH__LOADING_PRODUCTS,
-                        payload: { ...initProductListStore },
-                    });
-                } else {
-                    dispatch({
-                        type: AuthTransitionTypes.CHECKING_AUTH__NOT_AUTHENTICATED,
-                        payload: {},
-                    });
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    };
 
 export const useAuthenticate =
     (dispatch: DispatchType, authService: AuthService) =>
     (username: string, password: string) => {
         authService
             .authenticate({ username, password })
-            .then(() => {
+            .then((profile) => {
                 dispatch({
                     type: AuthTransitionTypes.AUTHENTICATING__LOADING_PRODUCTS,
-                    payload: { ...initProductListStore },
+                    payload: { profile },
                 });
             })
             .catch(() => {

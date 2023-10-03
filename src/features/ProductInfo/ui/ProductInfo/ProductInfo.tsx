@@ -1,27 +1,16 @@
 import { useContext } from 'react';
-import { ActionContext, GetStateContext, ProductInfoState } from 'store';
-import { TransitionTypes } from 'store/enums';
+import { GetStateContext, ProductInfoState } from 'store';
 
 export const ProductInfo = () => {
     const state = useContext(GetStateContext)();
-    const dispatch = useContext(ActionContext);
 
     const {
         data: { productForInfo },
     } = state as ProductInfoState;
     const { id, title, description, price, brand, images } = productForInfo;
 
-    const onClickBack = () => {
-        dispatch({
-            type: TransitionTypes.PRODUCT_INFO__PICKING_PRODUCTS,
-            payload: {},
-        });
-    };
     return (
         <div>
-            <button type="button" onClick={onClickBack}>
-                Back
-            </button>
             <br />
             {id}. {title}
             <br />

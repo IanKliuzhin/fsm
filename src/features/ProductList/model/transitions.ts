@@ -1,3 +1,5 @@
+import { NotAuthenticatedState } from 'features/Authentication/model';
+import { AuthStages } from 'features/Authentication/model/enums';
 import { CartStages } from 'features/Cart/model/enums';
 import { ProductInfoStages } from 'features/ProductInfo/model/enums';
 import { ProtoTransition } from 'lib/FSM';
@@ -68,3 +70,12 @@ export const trPickingProductsToCart = {
         ...state.data,
     }),
 } satisfies ProtoTransition<PickingProductsState, CartState>;
+
+export const trPickingProductsToNotAuthenticated = {
+    type: ProductListTransitionTypes.PICKING_PRODUCTS__NOT_AUTHENTICATED,
+    from: ProductListStages.PICKING_PRODUCTS,
+    to: AuthStages.NOT_AUTHENTICATED,
+    collectData: (state) => ({
+        ...state.data,
+    }),
+} satisfies ProtoTransition<PickingProductsState, NotAuthenticatedState>;

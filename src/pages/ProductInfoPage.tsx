@@ -1,5 +1,10 @@
-import { ProductInfo } from 'features';
+import { Header, ProductInfo } from 'features';
 
 export const ProductInfoPage = () => {
-    return <ProductInfo />;
+    return (
+        <>
+            <Header />
+            <ProductInfo />
+        </>
+    );
 };

@@ -1,5 +1,10 @@
-import { Cart } from 'features';
+import { Cart, Header } from 'features';
 
 export const CartPage = () => {
-    return <Cart />;
+    return (
+        <>
+            <Header />
+            <Cart />
+        </>
+    );
 };

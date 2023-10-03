@@ -9,7 +9,6 @@ import { ProductListPage } from './ProductListPage';
 
 export const routing = (state: State): ReactNode => {
     switch (state.stage) {
-        case Stages.CHECKING_AUTH:
         case Stages.NOT_AUTHENTICATED:
         case Stages.AUTHENTICATING:
             return <AuthenticationPage />;
