@@ -1,3 +1,7 @@
 export type { CartState } from './types';
 
-export { trCartToCart, trCartToPickingProducts } from './transitions';
+export {
+    trCartToCart,
+    trCartToPickingProducts,
+    trCartToPayment,
+} from './transitions';

@@ -9,3 +9,5 @@ export type { ProductsService } from './ProductList';
 export { ProductInfo } from './ProductInfo';
 
 export { Cart } from './Cart';
+
+export { Payment } from './Payment';

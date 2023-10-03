@@ -11,8 +11,15 @@ import {
     trCheckingAuthToLoadingProducts,
     trAuthenticatingToLoadingProducts,
 } from 'features/Authentication/model';
-import { CartState } from 'features/Cart/model';
+import { CartState, trCartToPayment } from 'features/Cart/model';
 import { trCartToCart, trCartToPickingProducts } from 'features/Cart/model';
+import {
+    trPaymentToCart,
+    trPaymentToPaying,
+    trPayingToPaid,
+    trPaidToPickingProducts,
+    PayState,
+} from 'features/Payment/model';
 import {
     ProductInfoState,
     trProductInfoToPickingProducts,
@@ -27,7 +34,7 @@ import {
     trPickingProductsToPickingProducts,
     trPickingProductsToCart,
 } from 'features/ProductList/model';
-import { ActionType, FSM, ProtoState, ProtoTransition } from 'lib/FSM';
+import { ActionType, FSM, ProtoTransition } from 'lib/FSM';
 import { Stages, TransitionTypes } from './enums';
 import type { ProductType } from './types';
 
@@ -37,12 +44,8 @@ export type {
     ProductListState,
     ProductInfoState,
     CartState,
+    PayState,
 };
-
-interface PaymentState extends ProtoState {
-    stage: Stages['PAYMENT'];
-    data: any;
-}
 
 export type State =
     | CheckingAuthState
@@ -52,7 +55,7 @@ export type State =
     | PickingProductsState
     | ProductInfoState
     | CartState
-    | PaymentState;
+    | PayState;
 
 const trPickingProductsToNotAuthenticated = {
     type: TransitionTypes.PICKING_PRODUCTS__NOT_AUTHENTICATED,
@@ -63,26 +66,6 @@ const trPickingProductsToNotAuthenticated = {
         ...payload,
     }),
 } satisfies ProtoTransition<PickingProductsState, NotAuthenticatedState>;
-
-const trCartToPayment = {
-    type: TransitionTypes.CART__PAYMENT,
-    from: Stages.CART,
-    to: Stages.PAYMENT,
-    collectData: (state, payload) => ({
-        ...state.data,
-        ...payload,
-    }),
-} satisfies ProtoTransition<CartState, PaymentState>;
-
-const trPaymentToPickingProducts = {
-    type: TransitionTypes.PAYMENT__PICKING_PRODUCTS,
-    from: Stages.PAYMENT,
-    to: Stages.PICKING_PRODUCTS,
-    collectData: (state, payload) => ({
-        ...state.data,
-        ...payload,
-    }),
-} satisfies ProtoTransition<PaymentState, PickingProductsState>;
 
 export type Transition =
     | typeof trCheckingAuthToNotAuthenticated
@@ -100,7 +83,10 @@ export type Transition =
     | typeof trCartToCart
     | typeof trCartToPickingProducts
     | typeof trCartToPayment
-    | typeof trPaymentToPickingProducts;
+    | typeof trPaymentToCart
+    | typeof trPaymentToPaying
+    | typeof trPayingToPaid
+    | typeof trPaidToPickingProducts;
 
 const transitions = [
     trCheckingAuthToNotAuthenticated,
@@ -118,7 +104,10 @@ const transitions = [
     trCartToCart,
     trCartToPickingProducts,
     trCartToPayment,
-    trPaymentToPickingProducts,
+    trPaymentToCart,
+    trPaymentToPaying,
+    trPayingToPaid,
+    trPaidToPickingProducts,
 ];
 
 export const initState = {

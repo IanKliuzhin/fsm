@@ -1,3 +1,5 @@
+import { PaymentState } from 'features/Payment/model';
+import { PaymentStages } from 'features/Payment/model/enums';
 import { ProductListStages } from 'features/ProductList/model/enums';
 import { ProtoTransition } from 'lib/FSM';
 import { ProductType, ProductListState } from 'store';
@@ -37,3 +39,12 @@ export const trCartToPickingProducts = {
         ...state.data,
     }),
 } satisfies ProtoTransition<CartState, ProductListState>;
+
+export const trCartToPayment = {
+    type: CartTransitionTypes.CART__PAYMENT,
+    from: CartStages.CART,
+    to: PaymentStages.PAYMENT,
+    collectData: (state) => ({
+        ...state.data,
+    }),
+} satisfies ProtoTransition<CartState, PaymentState>;

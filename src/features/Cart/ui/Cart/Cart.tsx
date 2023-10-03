@@ -21,16 +21,23 @@ export const Cart = () => {
         0,
     );
 
-    const onClickBack = () => {
+    const onBackClick = () => {
         dispatch({
             type: TransitionTypes.CART__PICKING_PRODUCTS,
             payload: {},
         });
     };
 
+    const onPaymentClick = () => {
+        dispatch({
+            type: TransitionTypes.CART__PAYMENT,
+            payload: {},
+        });
+    };
+
     return (
         <div>
-            <button type="button" onClick={onClickBack}>
+            <button type="button" onClick={onBackClick}>
                 Back
             </button>
             <br />
@@ -44,6 +51,9 @@ export const Cart = () => {
                     <br />
                     <br />
                     Total price: ${totalPrice}
+                    <button type="button" onClick={onPaymentClick}>
+                        Go to payment
+                    </button>
                 </>
             )}
         </div>

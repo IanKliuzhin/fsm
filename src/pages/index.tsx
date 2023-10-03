@@ -3,6 +3,7 @@ import { State } from 'store';
 import { Stages } from 'store/enums';
 import { AuthenticationPage } from './AuthenticationPage';
 import { CartPage } from './CartPage';
+import { PaymentPage } from './PaymentPage';
 import { ProductInfoPage } from './ProductInfoPage';
 import { ProductListPage } from './ProductListPage';
 
@@ -19,6 +20,10 @@ export const routing = (state: State): ReactNode => {
             return <ProductInfoPage />;
         case Stages.CART:
             return <CartPage />;
+        case Stages.PAYMENT:
+        case Stages.PAYING:
+        case Stages.PAID:
+            return <PaymentPage />;
         default:
             return '';
     }
