@@ -3,6 +3,7 @@ import { ProductListStoreType } from 'features/ProductList/model';
 import { ActionContext, GetStateContext } from 'store';
 import { useLogout, useGoBack, useGoToCart } from '../../model';
 import { CartIcon } from '../CartIcon';
+import classes from './Header.module.scss';
 
 export const Header = () => {
     const state = useContext(GetStateContext)();
@@ -16,16 +17,18 @@ export const Header = () => {
     const onGoToCartClick = useGoToCart(dispatch, state);
 
     return (
-        <div>
+        <div className={classes.header}>
             {onGoBackClick && (
-                <span onClick={onGoBackClick}>{'<--'} Go back</span>
+                <div className={classes.back} onClick={onGoBackClick} />
             )}
             {onLogoutClick && (
-                <>
+                <div className={classes.user}>
+                    <img className={classes.avatar} src={image} alt={email} />
                     {username} ({email}){' '}
-                    <img src={image} alt={email} height="50" />
-                    <span onClick={onLogoutClick}>logout</span>
-                </>
+                    <span className={classes.logout} onClick={onLogoutClick}>
+                        Logout
+                    </span>
+                </div>
             )}
             {onGoToCartClick && (
                 <CartIcon

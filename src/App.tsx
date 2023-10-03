@@ -9,6 +9,7 @@ import {
     reducer,
     initState,
 } from 'store';
+import './styles/App.scss';
 
 export const App = () => {
     const [state, dispatch] = useReducer(reducer, initState);

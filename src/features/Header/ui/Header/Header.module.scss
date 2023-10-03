@@ -1,0 +1,46 @@
+.header {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    background: gainsboro;
+}
+
+.back {
+    width: 40px;
+    height: 40px;
+    background: url('./img/leftArrow.svg') center/contain no-repeat;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.75;
+    }
+}
+
+.user {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    transform: translate(-50%, -50%);
+
+    .avatar {
+        height: 40px;
+        box-shadow: inset 0 -1px 6px rgb(0 0 0 / 60%);
+    }
+
+    .logout {
+        margin-left: 10px;
+        color: rgb(39 152 222);
+        cursor: pointer;
+
+        &:hover {
+            color: rgb(153 179 195);
+        }
+    }
+}

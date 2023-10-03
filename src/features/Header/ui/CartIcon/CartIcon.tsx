@@ -1,3 +1,5 @@
+import classes from './CartIcon.module.scss';
+
 export const CartIcon = ({
     amount,
     open,
@@ -5,5 +7,9 @@ export const CartIcon = ({
     amount: number;
     open: () => void;
 }) => {
-    return <div onClick={open}>Items in cart: {amount}</div>;
+    return (
+        <div className={classes.cart} onClick={open}>
+            {amount > 0 && <div className={classes.amount}>{amount}</div>}
+        </div>
+    );
 };
