@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Input } from 'shared/ui';
+import { Input, Loader } from 'shared/ui';
 import { Button } from 'shared/ui/Button';
 import { ActionContext, AuthState, GetStateContext } from 'store';
 import { Stages, TransitionTypes } from 'store/enums';
@@ -43,6 +43,7 @@ export const AuthForm = () => {
                     setUsername(e.target.value)
                 }
                 placeholder="Username"
+                className={classes.input}
             />
             <Input
                 value={password}
@@ -51,17 +52,23 @@ export const AuthForm = () => {
                     setPassword(e.target.value)
                 }
                 placeholder="Password"
+                className={classes.input}
             />
-            <Button text="Authentication" type="submit" />
-            <div className={classes.hint}>
-                You can use pair atuny0 / 9uQFF1Lh
-            </div>
-            {authError ? (
+            {stage === Stages.AUTHENTICATING ? (
+                <Loader />
+            ) : (
                 <>
-                    <br />
-                    {authError}
+                    <Button
+                        text="Authentication"
+                        type="submit"
+                        className={classes.button}
+                    />
+                    <div className={classes.hint}>
+                        You can use pair atuny0 / 9uQFF1Lh
+                    </div>
                 </>
-            ) : null}
+            )}
+            {authError && <div className={classes.error}>{authError}</div>}
         </form>
     );
 };
