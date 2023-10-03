@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Input } from 'shared/ui';
 import { ActionContext, AuthState, GetStateContext } from 'store';
 import { Stages, TransitionTypes } from 'store/enums';
-import { useAuthenticate } from '../..//model';
+import { useAuthenticate } from '../../model';
 
 export const AuthForm = () => {
     const [username, setUsername] = useState('');

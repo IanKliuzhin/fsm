@@ -33,8 +33,8 @@ export const trAuthenticatingToLoadingProducts = {
     to: ProductListStages.LOADING_PRODUCTS,
     collectData: (state, { profile }) => ({
         ...state.data,
-        authError: null,
         ...initProductListStore,
+        authError: null,
         profile,
     }),
 } satisfies ProtoTransition<AuthenticatingState, LoadingProductsState>;

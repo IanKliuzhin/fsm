@@ -1,8 +1,7 @@
 import { useContext, Fragment } from 'react';
-import { PaymentStages } from 'features/Payment/model/enums';
 import { Loader } from 'shared/ui';
 import { ActionContext, GetStateContext, PayState } from 'store';
-import { TransitionTypes } from 'store/enums';
+import { Stages, TransitionTypes } from 'store/enums';
 import { usePay } from '../../model';
 
 export const Payment = () => {
@@ -33,7 +32,7 @@ export const Payment = () => {
         });
     };
 
-    if (stage === PaymentStages.PAID)
+    if (stage === Stages.PAID)
         return (
             <>
                 Thank you for your purchase!
@@ -55,7 +54,7 @@ export const Payment = () => {
             <br />
             Total price: ${totalPrice}
             <br />
-            {stage === PaymentStages.PAYING ? (
+            {stage === Stages.PAYING ? (
                 <Loader />
             ) : (
                 <button type="button" onClick={onPayClick}>
